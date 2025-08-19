@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
 import { getItems } from "../api";
-import IndividualItem from "./IndividualItem";
+import ItemCards from "./ItemCards";
 
 function ItemList() {
   const [itemList, setItemList] = useState([]);
 
   useEffect(() => {
     getItems().then((result) => {
-      setItemList(result);
+      setItemList(result.data.items);
+      console.log(Array.isArray(itemList));
     });
-  });
+  }, []);
 
   //  useEffect(() => {
   //   if (topic) {
@@ -40,10 +41,13 @@ function ItemList() {
 
   return (
     <>
+    <div id="item-list-div">
       <h1>ITEM LIST</h1>
+      {console.log(itemList)}
       {itemList.map((item) => {
-        return <IndividualItem id={item_id} key={item.item_id} />;
+        return <ItemCards item={item} key={item.item_id} />;
       })}
+      </div>
     </>
   );
 }

@@ -7,3 +7,7 @@ const api = axios.create({
 export const getItems = () => {
   return api.get(`/api/items`);
 };
+
+export const getItemsById = (itemId) => {
+  return api.get(`/api/items/${itemId}`);
+};

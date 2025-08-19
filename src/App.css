@@ -1,3 +1,8 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -28,9 +33,11 @@ body {
   /* place-items: center; */
   min-width: 320px;
   min-height: 100vh; /* max-width: 1280px; */
-  margin: 0 auto;
+  /* margin: 0 auto; */
   /* padding: 2rem; */
   text-align: center;
+  display: flex;
+  justify-content: center;
 }
 
 h1 {
@@ -39,6 +46,7 @@ h1 {
 }
 
 #app {
+  width: 100%;
 }
 
 .logo {
@@ -92,12 +100,6 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
 }
 
 header {
@@ -202,7 +204,7 @@ button[type="submit"] {
 button[type="submit"]:hover {
   background-color: #0056b3;
 }
-
+/* 
 .wrapper_inner {
   width: 100%;
   max-width: 800px;
@@ -210,7 +212,7 @@ button[type="submit"]:hover {
   max-height: 85%;
   overflow: auto;
   position: relative;
-}
+} */
 
 footer {
   padding: 100px;
@@ -260,4 +262,27 @@ footer {
 }
 
 img:hover {
+}
+
+.item-card {
+  border: 10px solid purple;
+}
+
+.item-cards-images {
+  max-width: 300px;
+  max-height: 200px;
+}
+
+.individual-item-image {
+  max-width: 800px;
+  max-height: 500px;
+}
+
+#item-list-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
 }

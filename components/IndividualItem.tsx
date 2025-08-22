@@ -1,12 +1,25 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getItemsById } from "../api";
+import { useContext } from "react";
+import { ItemContext, BasketContext } from "../src/Contexts";
 
 function IndividualItem() {
   const [item, setItem] = useState();
+  const { basket, setBasket } = useContext(BasketContext);
+  const [quantity, setQuantity] = useState(1);
 
-  const handleAddToBasket = () => {
-    //complete functionality here
+  const handleAddToBasket = (e) => {
+    //complete functionality here - I need to somehow call the payment function with the value of the basket............... - but not here, on a separate checkout page..................
+    e.preventDefault();
+    const basketItem = {
+      item_id: item.item_id,
+      name: item.name,
+      price: item.price,
+      quantity: parseInt(quantity),
+    };
+
+    setBasket([...basket, basketItem]);
   };
 
   const { item_id } = useParams();
@@ -16,7 +29,7 @@ function IndividualItem() {
       setItem(result.data.item);
     });
   }, [item_id]);
-
+  console.log(basket);
   return (
     <>
       <h1>Individual Item {item_id}</h1>
@@ -39,8 +52,12 @@ function IndividualItem() {
             </p>
           </div>
           <div>
-            <form action="">
-              <select name="quantity" id="">
+            <form onSubmit={handleAddToBasket} method="post">
+              <select
+                name="quantity"
+                value={quantity}
+                onChange={(e) => setQuantity(e.target.value)}
+              >
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -52,7 +69,7 @@ function IndividualItem() {
                 id=""
                 placeholder="Tell us about any colour preferences you may have..."
               ></textarea>
-              <button onClick={handleAddToBasket}>Add to Basket</button>
+              <button type="submit">Add to Basket</button>
             </form>
           </div>
         </div>

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { getItemsById } from "../api";
 import { useContext } from "react";
 import { ItemContext, BasketContext } from "../src/Contexts";
+import NavBar from "./NavBar";
 
 function IndividualItem() {
   const [item, setItem] = useState();
@@ -32,6 +33,7 @@ function IndividualItem() {
   console.log(basket);
   return (
     <>
+      <NavBar />
       <h1>Individual Item {item_id}</h1>
       {item ? (
         <div>
@@ -56,7 +58,7 @@ function IndividualItem() {
               <select
                 name="quantity"
                 value={quantity}
-                onChange={(e) => setQuantity(e.target.value)}
+                onChange={(e) => setQuantity(Number(e.target.value))}
               >
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -72,6 +74,12 @@ function IndividualItem() {
               <button type="submit">Add to Basket</button>
             </form>
           </div>
+          <div>
+            <p>basket:</p>
+            {basket.map((eachItem) => {
+              return <p>{eachItem.item_id}</p>;
+            })}
+          </div>
         </div>
       ) : null}
     </>
@@ -84,3 +92,14 @@ export default IndividualItem;
 //need to get the props in here somehow
 
 // need to implement environment variables to flip between the locally held image source, and the hosted version, once we go live.
+
+/* // In IndividualItem.tsx and other shop pages
+return (
+  <>
+    <NavBar />
+    <div className="page-with-navbar">
+      <h1>Individual Item {item_id}</h1>
+      { rest of content }
+    </div>
+  </>
+);*/

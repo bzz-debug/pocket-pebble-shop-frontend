@@ -11,3 +11,9 @@ export const getItems = () => {
 export const getItemsById = (itemId) => {
   return api.get(`/api/items/${itemId}`);
 };
+
+// export const handlePaypalCheckout = (basketTotal: number) => {
+//   return api.post("/pay", {
+//     totalPrice: basketTotal,
+//   });
+// };

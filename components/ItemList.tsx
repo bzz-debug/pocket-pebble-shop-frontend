@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getItems } from "../api";
 import ItemCards from "./ItemCards";
+import NavBar from "./NavBar";
 
 function ItemList() {
   const [itemList, setItemList] = useState([]);
@@ -41,15 +42,27 @@ function ItemList() {
 
   return (
     <>
-    <div id="item-list-div">
-      <h1>ITEM LIST</h1>
-      {console.log(itemList)}
-      {itemList.map((item) => {
-        return <ItemCards item={item} key={item.item_id} />;
-      })}
+      <NavBar />
+      <div id="item-list-div">
+        <h1>ITEM LIST</h1>
+        {console.log(itemList)}
+        {itemList.map((item) => {
+          return <ItemCards item={item} key={item.item_id} />;
+        })}
       </div>
     </>
   );
 }
 
 export default ItemList;
+
+/* // In IndividualItem.tsx and other shop pages
+return (
+  <>
+    <NavBar />
+    <div className="page-with-navbar">
+      <h1>Individual Item {item_id}</h1>
+      { rest of content }
+    </div>
+  </>
+);*/
